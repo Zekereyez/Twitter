@@ -10,9 +10,14 @@
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "Tweet.h"
+#import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 - (IBAction)didTapLogout:(id)sender;
+
+@property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 
 @end
 
@@ -21,14 +26,56 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Source and delegate
+    self.tableView.dataSource = self;
+    self.tableView.dataSource = self;
+    
+    // Instantiating UIRefreshControl
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    // Binding action to the refresh control
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    // Adding UIRefreshControl to the table view
+    [self.tableView insertSubview:refreshControl atIndex:0];
+    
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
+            for (Tweet *tweet in tweets) {
+                NSString *text = tweet.text;
                 NSLog(@"%@", text);
             }
+            // Valid tweets so we load the array with the tweet objects
+            self.arrayOfTweets = [NSMutableArray arrayWithArray:tweets];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
+}
+
+// Makes a network request to get updated data
+// Updates the tableView with the new data
+// Hides the RefreshControl
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    // Get timeline
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            for (Tweet *tweet in tweets) {
+                NSString *text = tweet.text;
+                NSLog(@"%@", text);
+            }
+            // Use the new data to update the data source
+            // Valid tweets so we load the array with the tweet objects
+            self.arrayOfTweets = [NSMutableArray arrayWithArray:tweets];
+            // Reload the tableView now that there is new data
+            [self.tableView reloadData];
+            // Tell the refreshControl to stop spinning
+             [refreshControl endRefreshing];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
@@ -62,4 +109,63 @@
     // Clear out the tokens
     [[APIManager shared] logout];
 }
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
+    Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    
+    // Tweet author screen name
+    cell.tweetAuthor.text = tweet.user.name;
+    
+    // Tweet @ name
+      cell.tweetUser.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
+    
+    // Tweet date
+    cell.tweetDate.text = tweet.createdAtString;
+    
+    // Tweet text info here
+    cell.tweetBody.text = tweet.text;
+    
+    // retweet count
+    cell.retweetCount.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+    
+    // favorite / like count here
+    cell.likeCount.text = [NSString stringWithFormat:@"%i", tweet.favoriteCount];
+    
+//    cell.textLabel.text = tweet.text;
+//    NSLog(@"tweet.text");
+
+    
+    // User profile picture and url data
+    NSString *URLString = tweet.user.profilePicture;
+    // Removes instance of '_normal' to make url return a hd quality profile picture
+    URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSURL *url = [NSURL URLWithString:URLString];
+    
+//    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    
+    // Setting image of profile pic to nil to prevent flickering
+    cell.profilePic.image = nil;
+    // Setting the image of the profile pic
+    [cell.profilePic setImageWithURL:url];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayOfTweets.count;
+}
+
+//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+//    <#code#>
+//}
+//
+//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+//    <#code#>
+//}
+
+
+
+
 @end

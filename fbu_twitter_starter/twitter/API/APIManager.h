@@ -15,4 +15,7 @@
 
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
 
+// should add a function for each API request you want to support
+// e.g. getting a user’s timeline, favoriting a tweet, retweeting, etc.
+
 @end
