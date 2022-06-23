@@ -248,6 +248,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="edit-icon"/>
+                                <connections>
+                                    <segue destination="ZKN-Fj-Ced" kind="presentation" id="kmX-jQ-Qt4"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -259,21 +262,45 @@
             </objects>
             <point key="canvasLocation" x="1659.4202898550725" y="36.160714285714285"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose View Controller-->
         <scene sceneID="2xI-RN-0SQ">
             <objects>
-                <viewController id="UyC-eB-lAF" sceneMemberID="viewController">
+                <viewController id="UyC-eB-lAF" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b2i-Ga-ufz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Type something here... 🫡" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="D0R-bT-z2J">
+                                <rect key="frame" x="0.0" y="167" width="414" height="220"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Cf-xR-PO1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="POj-tp-bHN"/>
+                    <navigationItem key="navigationItem" id="POj-tp-bHN">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="close-icon" id="OvV-Ml-fMe">
+                            <connections>
+                                <action selector="didTapClose:" destination="UyC-eB-lAF" id="1K2-Jx-VeV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="lGF-Sn-Luc">
+                            <connections>
+                                <action selector="didTapTweet:" destination="UyC-eB-lAF" id="p6f-4D-gJr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tweetMessage" destination="D0R-bT-z2J" id="cXB-8u-KSb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MS7-Xs-2b9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3387" y="36"/>
+            <point key="canvasLocation" x="3386.9565217391305" y="35.491071428571423"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUT-Ke-VeR">
@@ -299,7 +326,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZKN-Fj-Ced" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Es8-F1-dHJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -314,11 +341,15 @@
     </scenes>
     <resources>
         <image name="TwitterLogoBlue" width="133.33332824707031" height="133.33332824707031"/>
+        <image name="close-icon" width="26" height="24"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="message-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

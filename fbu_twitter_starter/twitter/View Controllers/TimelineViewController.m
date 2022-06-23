@@ -13,8 +13,13 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+// TODO: Make this build and see in COMPOSEVC why property
+// TODO: isn't declaring
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+//@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 - (IBAction)didTapLogout:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
@@ -87,15 +92,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    // Get the new view controller using [segue destinationViewController]
+    UINavigationController *navigationController = [segue destinationViewController];
+    // Pass the selected object to the new view controller
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
-*/
 
 
 - (IBAction)didTapLogout:(id)sender {
@@ -150,6 +157,12 @@
     // Setting the image of the profile pic
     [cell.profilePic setImageWithURL:url];
     
+    // Making the rounded profile pic 
+    cell.profilePic.layer.masksToBounds = false;
+    cell.profilePic.layer.cornerRadius = cell.profilePic.frame.size.width/2;
+    cell.profilePic.clipsToBounds = true;
+    cell.profilePic.layer.borderWidth = 0.05;
+    
     return cell;
 }
 
@@ -166,6 +179,102 @@
 //}
 
 
-
+//
+//
+//- (void)didTweet:(nonnull Tweet *)tweet {
+//    <#code#>
+//}
+//
+//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+//    <#code#>
+//}
+//
+//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+//    <#code#>
+//}
+//
+//- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+//    <#code#>
+//}
+//
+//- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+//    <#code#>
+//}
+//
+//- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+//    <#code#>
+//}
+//
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+//    <#code#>
+//}
+//
+//- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+//    <#code#>
+//}
+//
+//- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
+//    <#code#>
+//}
+//
+//- (void)setNeedsFocusUpdate {
+//    <#code#>
+//}
+//
+//- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
+//    <#code#>
+//}
+//
+//- (void)updateFocusIfNeeded {
+//    <#code#>
+//}
+//
+//- (void)didTweet:(nonnull Tweet *)tweet {
+//    <#code#>
+//}
+//
+//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+//    <#code#>
+//}
+//
+//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+//    <#code#>
+//}
+//
+//- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+//    <#code#>
+//}
+//
+//- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+//    <#code#>
+//}
+//
+//- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+//    <#code#>
+//}
+//
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+//    <#code#>
+//}
+//
+//- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+//    <#code#>
+//}
+//
+//- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
+//    <#code#>
+//}
+//
+//- (void)setNeedsFocusUpdate {
+//    <#code#>
+//}
+//
+//- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
+//    <#code#>
+//}
+//
+//- (void)updateFocusIfNeeded {
+//    <#code#>
+//}
 
 @end
