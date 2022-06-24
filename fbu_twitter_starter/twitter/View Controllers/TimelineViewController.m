@@ -97,13 +97,6 @@
         DetailViewController *detailVC = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         detailVC.tweet = self.arrayOfTweets[indexPath.row];
-//        UINavigationController *navigationController = [segue destinationViewController];
-//        // Pass the selected object to the new view controller
-//        DetailViewController *detailController = (DetailViewController*)navigationController.topViewController;
-//        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-//        Tweet *tweet = self.arrayOfTweets[indexPath.row];
-//        detailController.delegate = self;
-//        detailController.tweet = tweet;
     }
 }
 
@@ -151,8 +144,6 @@
     // Removes instance of '_normal' to make url return a hd quality profile picture
     URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
-    
-    // NSData *urlData = [NSData dataWithContentsOfURL:url];
     
     // Setting image of profile pic to nil to prevent flickering
     cell.profilePic.image = nil;

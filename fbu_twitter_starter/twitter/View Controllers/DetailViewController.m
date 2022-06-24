@@ -42,6 +42,7 @@
     // Retweet and Favorite Count
     self.retweetCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
     self.favoriteCount.text = [NSString stringWithFormat:@"%i", self.tweet.favoriteCount];
+    [self refreshData];
 }
 - (IBAction)didTapRetweet:(id)sender {
     // If tweet is already retweeted, delete retweeted actions
