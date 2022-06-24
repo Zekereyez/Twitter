@@ -47,20 +47,6 @@
     
     // Get timeline
     [self getTimeLine];
-//    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-//        if (tweets) {
-//            NSLog(@"😎😎😎 Successfully loaded home timeline");
-//            for (Tweet *tweet in tweets) {
-//                NSString *text = tweet.text;
-//                NSLog(@"%@", text);
-//            }
-//            // Valid tweets so we load the array with the tweet objects
-//            self.arrayOfTweets = [NSMutableArray arrayWithArray:tweets];
-//            [self.tableView reloadData];
-//        } else {
-//            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-//        }
-//    }];
 }
 
 - (void)getTimeLine {
@@ -152,7 +138,7 @@
     URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
     
-//    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    // NSData *urlData = [NSData dataWithContentsOfURL:url];
     
     // Setting image of profile pic to nil to prevent flickering
     cell.profilePic.image = nil;
@@ -176,6 +162,5 @@
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
     [self.presentedViewController dismissViewControllerAnimated:YES completion:^{}];
-    
 }
 @end

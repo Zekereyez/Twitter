@@ -9,7 +9,6 @@
 #import "User.h"
 
 @implementation User
-
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
@@ -20,5 +19,4 @@
     }
     return self;
 }
-
 @end

@@ -29,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 // MARK: Method Signatures
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries;
-
 @end
 
 NS_ASSUME_NONNULL_END
