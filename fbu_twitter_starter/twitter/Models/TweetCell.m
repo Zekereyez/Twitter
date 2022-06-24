@@ -98,16 +98,6 @@
     self.retweetCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
     self.likeCount.text = [NSString stringWithFormat:@"%i", self.tweet.favoriteCount];
     
-    // User profile picture update and url data
-    NSString *URLString = self.tweet.user.profilePicture;
-    // Removes instance of '_normal' to make url return a hd quality profile picture
-    URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-    NSURL *url = [NSURL URLWithString:URLString];
-    // Setting image of profile pic to nil to prevent flickering
-    self.profilePic.image = nil;
-    // Setting the image of the profile pic
-    [self.profilePic setImageWithURL:url];
-    
     // Favorite and Retweet Icons for image update
     UIImage *favoriteIcon;
     UIImage *retweetIcon;

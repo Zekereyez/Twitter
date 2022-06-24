@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		9EDE750F2862716500B76422 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE750E2862716500B76422 /* Tweet.m */; };
 		9EDE751228628DB400B76422 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE751128628DB400B76422 /* TweetCell.m */; };
 		9EDE75152865043400B76422 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE75142865043400B76422 /* ComposeViewController.m */; };
+		9EF5A6BF2866559A004A4D7D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF5A6BE2866559A004A4D7D /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		9EDE751128628DB400B76422 /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		9EDE75132865043400B76422 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		9EDE75142865043400B76422 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		9EF5A6BD2866559A004A4D7D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		9EF5A6BE2866559A004A4D7D /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 				6AD2790820BCC04D0085BC29 /* TimelineViewController.m */,
 				9EDE75132865043400B76422 /* ComposeViewController.h */,
 				9EDE75142865043400B76422 /* ComposeViewController.m */,
+				9EF5A6BD2866559A004A4D7D /* DetailViewController.h */,
+				9EF5A6BE2866559A004A4D7D /* DetailViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				9EDE750F2862716500B76422 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
+				9EF5A6BF2866559A004A4D7D /* DetailViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,
