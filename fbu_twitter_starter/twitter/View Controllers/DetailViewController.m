@@ -17,7 +17,7 @@
     [super viewDidLoad];
     
     self.authorLabel.text = self.tweet.user.name;
-    self.screenNameLabel.text = self.tweet.user.screenName;
+    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.screenName];
     self.dateLabel.text = self.tweet.createdAtString;
     // User profile picture and url data
     NSString *URLString = self.tweet.user.profilePicture;
