@@ -11,8 +11,6 @@
 @implementation TweetCell
 
 - (IBAction)didTapShare:(UIButton *)sender {
-    
-    
 }
 
 - (IBAction)didTapFavorite:(id)sender {
@@ -31,7 +29,7 @@
         }];
 
     }
-    // Tweet is not already like so we add like actions
+    // Tweet is not already like so add like actions
     else {
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
@@ -45,13 +43,37 @@
         }];
 
     }
-    
-    // TODO: Update cell UI
+    // Update cell UI
     [self refreshData];
-    
 }
 
 - (IBAction)didTapRetweet:(UIButton *)sender {
+    // If tweet is already retweeted, delete retweeted actions
+    if (self.tweet.retweeted) {
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if (error) {
+                NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+            } else if (tweet) {
+                NSLog(@"Successfully unretweeted the following Tweet: \n%@", tweet.text);
+            }
+        }];
+    }
+    // Tweet is not retweeted so add retweeted actions
+    else {
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if (error) {
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            } else if (tweet) {
+                NSLog(@"Successfully retweeted the following Tweet: \n%@", tweet.text);
+            }
+        }];
+    }
+    //Update cell UI
+    [self refreshData];
 }
 
 - (IBAction)didTapComments:(UIButton *)sender {
