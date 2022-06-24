@@ -46,6 +46,24 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     // Get timeline
+    [self getTimeLine];
+//    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+//        if (tweets) {
+//            NSLog(@"😎😎😎 Successfully loaded home timeline");
+//            for (Tweet *tweet in tweets) {
+//                NSString *text = tweet.text;
+//                NSLog(@"%@", text);
+//            }
+//            // Valid tweets so we load the array with the tweet objects
+//            self.arrayOfTweets = [NSMutableArray arrayWithArray:tweets];
+//            [self.tableView reloadData];
+//        } else {
+//            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+//        }
+//    }];
+}
+
+- (void)getTimeLine {
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -59,7 +77,9 @@
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+//        [refreshControl end];
     }];
+
 }
 
 // Makes a network request to get updated data
@@ -67,24 +87,8 @@
 // Hides the RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     // Get timeline
-    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-        if (tweets) {
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (Tweet *tweet in tweets) {
-                NSString *text = tweet.text;
-                NSLog(@"%@", text);
-            }
-            // Use the new data to update the data source
-            // Valid tweets so we load the array with the tweet objects
-            self.arrayOfTweets = [NSMutableArray arrayWithArray:tweets];
-            // Reload the tableView now that there is new data
-            [self.tableView reloadData];
-            // Tell the refreshControl to stop spinning
-             [refreshControl endRefreshing];
-        } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-        }
-    }];
+    [self getTimeLine];
+    [refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -181,9 +185,13 @@
 
 //
 //
-//- (void)didTweet:(nonnull Tweet *)tweet {
-//    <#code#>
-//}
+- (void)didTweet:(nonnull Tweet *)tweet {
+    
+    [self.arrayOfTweets addObject:tweet];
+    [self.tableView reloadData];
+    [self getTimeLine];
+    
+}
 //
 //- (void)encodeWithCoder:(nonnull NSCoder *)coder {
 //    <#code#>

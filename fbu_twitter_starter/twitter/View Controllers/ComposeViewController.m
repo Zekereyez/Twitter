@@ -60,7 +60,8 @@
             NSLog(@"Compose Tweet Success!");
         }
     }];
-
+    // Closes the compose view controller
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end
