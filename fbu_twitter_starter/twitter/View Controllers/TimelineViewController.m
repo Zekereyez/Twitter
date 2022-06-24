@@ -14,10 +14,10 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DetailViewController.h"
 
-// TODO: Make this build and see in COMPOSEVC why property
-// TODO: isn't declaring
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, DetailViewControllerDelegate>
+
 
 //@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 - (IBAction)didTapLogout:(id)sender;
@@ -87,10 +87,24 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController]
-    UINavigationController *navigationController = [segue destinationViewController];
-    // Pass the selected object to the new view controller
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if([segue.identifier isEqualToString:@"ComposeSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        // Pass the selected object to the new view controller
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+        
+    } else if ([segue.identifier isEqualToString:@"DetailSegue"]) {
+        DetailViewController *detailVC = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        detailVC.tweet = self.arrayOfTweets[indexPath.row];
+//        UINavigationController *navigationController = [segue destinationViewController];
+//        // Pass the selected object to the new view controller
+//        DetailViewController *detailController = (DetailViewController*)navigationController.topViewController;
+//        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+//        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+//        detailController.delegate = self;
+//        detailController.tweet = tweet;
+    }
 }
 
 
@@ -162,5 +176,9 @@
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
     [self.presentedViewController dismissViewControllerAnimated:YES completion:^{}];
+}
+
+-(void)didTapView:(Tweet *)tweet {
+    [self.tableView reloadData];
 }
 @end
