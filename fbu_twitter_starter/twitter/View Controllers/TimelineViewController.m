@@ -173,10 +173,9 @@
 }
 
 - (void)didTweet:(nonnull Tweet *)tweet {
-    
-    [self.arrayOfTweets addObject:tweet];
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
-    [self getTimeLine];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{}];
     
 }
 @end

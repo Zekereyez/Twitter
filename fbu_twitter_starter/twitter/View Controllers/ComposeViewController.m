@@ -61,7 +61,7 @@
         }
     }];
     // Closes the compose view controller
-    [self dismissViewControllerAnimated:true completion:nil];
+//    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end

@@ -11,79 +11,44 @@
 @implementation TweetCell
 
 - (IBAction)didTapShare:(UIButton *)sender {
+    
+    
 }
 
-
-// TODO: Find out which didTap function is right...
-- (IBAction)didTapLike:(UIButton *)sender {
-    // Update the local tweet model depending on status
-    // If already liked then take one like away
-    if (self.tweet.favorited) {
-        self.tweet.favorited = NO;
-        self.tweet.favoriteCount -= 1;
-    }
-    // Increment by one like
-    else {
-        self.tweet.favorited = YES;
-        self.tweet.favoriteCount += 1;
-    }
-    
-    // TODO: Update cell UI
-    [self refreshData];
-    
-    // TODO: Send a POST request to the POST favorites/create endpoint
-    if (self.tweet.favorited) {
-                [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
-                    if (error) {
-                        NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
-                    } else if (tweet) {
-                        NSLog(@"Successfully retweeted the following Tweet: \n%@", tweet.text);
-                    }
-                }];
-            } else {
-                [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
-                    if (error) {
-                        NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
-                    } else if (tweet) {
-                        NSLog(@"Successfully unretweeted the following Tweet: \n%@", tweet.text);
-                    }
-                }];
-            }
-}
 - (IBAction)didTapFavorite:(id)sender {
     // Update the local tweet model depending on status
-    // If already liked then take one like away
+    // If already liked then delete liked actions
     if (self.tweet.favorited) {
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
+
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if (error) {
+                NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+            } else if (tweet) {
+                NSLog(@"Successfully unretweeted the following Tweet: \n%@", tweet.text);
+            }
+        }];
+
     }
-    // Increment by one like
+    // Tweet is not already like so we add like actions
     else {
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
+        
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if (error) {
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            } else if (tweet) {
+                NSLog(@"Successfully retweeted the following Tweet: \n%@", tweet.text);
+            }
+        }];
+
     }
     
     // TODO: Update cell UI
     [self refreshData];
     
-    // TODO: Send a POST request to the POST favorites/create endpoint
-    if (self.tweet.favorited) {
-                [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
-                    if (error) {
-                        NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
-                    } else if (tweet) {
-                        NSLog(@"Successfully retweeted the following Tweet: \n%@", tweet.text);
-                    }
-                }];
-            } else {
-                [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
-                    if (error) {
-                        NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
-                    } else if (tweet) {
-                        NSLog(@"Successfully unretweeted the following Tweet: \n%@", tweet.text);
-                    }
-                }];
-            }
 }
 
 - (IBAction)didTapRetweet:(UIButton *)sender {
@@ -134,19 +99,19 @@
     UIImage *retweetIcon;
     
     // Favorite Icon assignment
-    if (self.favoriteButton.selected) {
+    if (self.tweet.favorited) {
         favoriteIcon = [UIImage imageNamed:@"favor-icon-red.png"];
     }
     else {
-        favoriteIcon = [UIImage imageNamed:@"favor-red.png"];
+        favoriteIcon = [UIImage imageNamed:@"favor-icon.png"];
     }
     
     // Retweet Icon Assignment
-    if (self.retweetButton.selected) {
+    if (self.tweet.retweeted) {
         retweetIcon = [UIImage imageNamed:@"retweet-icon-green.png"];
     }
     else {
-        retweetIcon = [UIImage imageNamed:@"retweet-icon-green.png"];
+        retweetIcon = [UIImage imageNamed:@"retweet-icon.png"];
     }
     
     [self.favoriteButton setImage:favoriteIcon forState:UIControlStateNormal];
