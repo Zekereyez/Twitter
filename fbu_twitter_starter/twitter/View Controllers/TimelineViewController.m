@@ -77,7 +77,6 @@
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
-//        [refreshControl end];
     }];
 
 }
@@ -143,10 +142,6 @@
     
     // favorite / like count here
     cell.likeCount.text = [NSString stringWithFormat:@"%i", tweet.favoriteCount];
-    
-//    cell.textLabel.text = tweet.text;
-//    NSLog(@"tweet.text");
-
     
     // User profile picture and url data
     NSString *URLString = tweet.user.profilePicture;

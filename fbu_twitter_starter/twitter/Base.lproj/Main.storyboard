@@ -144,6 +144,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="favor-icon" title=""/>
                                                     <connections>
+                                                        <action selector="didTapFavorite:" destination="W8T-29-Eku" eventType="touchUpInside" id="5cN-0M-jEi"/>
                                                         <action selector="didTapLike:" destination="W8T-29-Eku" eventType="touchUpInside" id="JfK-tM-4Lh"/>
                                                     </connections>
                                                 </button>
