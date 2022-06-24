@@ -92,14 +92,6 @@
 
 -(void)refreshData {
     // Update all the views and sets the labels to respective text
-    // Name, screen name, and date update
-    self.tweetAuthor.text = self.tweet.user.name;
-    self.tweetUser.text = self.tweet.user.screenName;
-    self.tweetDate.text = self.tweet.createdAtString;
-    
-    // Tweet body update
-    self.textLabel.text = self.tweet.text;
-    
     // Retweet and like count updates
     // Note self.tweet can be replaced with _tweet
     // think of C++ class implementation
