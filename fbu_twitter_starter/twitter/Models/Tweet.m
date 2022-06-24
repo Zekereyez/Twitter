@@ -51,16 +51,15 @@
         // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
         
-        // TODO: Implement the formatting dates here
+        // Implement the formatting dates here
         NSDate *curDate = [NSDate date];
         NSTimeInterval diff = [curDate timeIntervalSinceDate:date];
                 
-        //format the created string based on if it was tweeted an hour or more ago or a minute or more ago
-        NSInteger interval = diff; // Apparently you can just convert timeintervals to integers
-        long seconds = interval % 60; //the integer will be in the format 238132 or smth like that so if we % 60 we get the remaining seconds since each 60 in the interval is a second
-        long minutes = (interval / 60) % 60; //dividing by 60 then doing modulo gets the minutes because thats the remaining minutes when dividing by hours
-        long hours = (interval / 3600); //this is just the whole number of hours spent
-                //then you format the string based on if there were any hours spent if not then minutes if not then seconds like how twitter does
+        // String format and math for time ago functionality
+        NSInteger interval = diff;
+        long seconds = interval % 60;
+        long minutes = (interval / 60) % 60;
+        long hours = (interval / 3600);
         if(hours > 1) {
             self.createdAtString = [NSString stringWithFormat:@"%ldh", hours];
         } else if(minutes > 1) {
