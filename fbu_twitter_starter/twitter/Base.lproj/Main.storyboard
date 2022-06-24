@@ -145,7 +145,6 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="favor-icon" title=""/>
                                                     <connections>
                                                         <action selector="didTapFavorite:" destination="W8T-29-Eku" eventType="touchUpInside" id="5cN-0M-jEi"/>
-                                                        <action selector="didTapLike:" destination="W8T-29-Eku" eventType="touchUpInside" id="JfK-tM-4Lh"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30.0k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6W-qS-LSl">
@@ -210,8 +209,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="YOp-B8-pMP" id="F0s-Sy-pII"/>
                                             <outlet property="likeCount" destination="9ut-lc-Ifr" id="fct-Rx-wTL"/>
                                             <outlet property="profilePic" destination="xHA-bU-AjW" id="DFz-FM-8B8"/>
+                                            <outlet property="retweetButton" destination="je2-pK-bw4" id="9Oi-Ng-bCw"/>
                                             <outlet property="retweetCount" destination="B6W-qS-LSl" id="GG0-y1-ujZ"/>
                                             <outlet property="tweetAuthor" destination="VuB-CD-bHM" id="sZK-ln-qEc"/>
                                             <outlet property="tweetBody" destination="YFQ-Y5-h2e" id="0gF-jH-Wp7"/>

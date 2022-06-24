@@ -125,9 +125,12 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
+    // Reference which tweet to the tweetCell
+    cell.tweet = tweet;
+    
     // Tweet author screen name
     cell.tweetAuthor.text = tweet.user.name;
-    
+
     // Tweet @ name
       cell.tweetUser.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     
@@ -169,17 +172,6 @@
     return self.arrayOfTweets.count;
 }
 
-//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-//    <#code#>
-//}
-//
-//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
-//    <#code#>
-//}
-
-
-//
-//
 - (void)didTweet:(nonnull Tweet *)tweet {
     
     [self.arrayOfTweets addObject:tweet];
@@ -187,97 +179,4 @@
     [self getTimeLine];
     
 }
-//
-//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-//    <#code#>
-//}
-//
-//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
-//    <#code#>
-//}
-//
-//- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-//    <#code#>
-//}
-//
-//- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
-//    <#code#>
-//}
-//
-//- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-//    <#code#>
-//}
-//
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-//    <#code#>
-//}
-//
-//- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-//    <#code#>
-//}
-//
-//- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
-//    <#code#>
-//}
-//
-//- (void)setNeedsFocusUpdate {
-//    <#code#>
-//}
-//
-//- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
-//    <#code#>
-//}
-//
-//- (void)updateFocusIfNeeded {
-//    <#code#>
-//}
-//
-//- (void)didTweet:(nonnull Tweet *)tweet {
-//    <#code#>
-//}
-//
-//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-//    <#code#>
-//}
-//
-//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
-//    <#code#>
-//}
-//
-//- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-//    <#code#>
-//}
-//
-//- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
-//    <#code#>
-//}
-//
-//- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-//    <#code#>
-//}
-//
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-//    <#code#>
-//}
-//
-//- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-//    <#code#>
-//}
-//
-//- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
-//    <#code#>
-//}
-//
-//- (void)setNeedsFocusUpdate {
-//    <#code#>
-//}
-//
-//- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
-//    <#code#>
-//}
-//
-//- (void)updateFocusIfNeeded {
-//    <#code#>
-//}
-
 @end

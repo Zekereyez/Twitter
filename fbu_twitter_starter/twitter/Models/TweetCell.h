@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
 #import "APIManager.h"
+#import "DateTools.h"
+#import "UIImageView+AFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) Tweet *tweet;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCount;
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
-
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+-(void)refreshData;
 
 @end
 

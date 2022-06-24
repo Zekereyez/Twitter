@@ -24,15 +24,6 @@
             // Change tweet to original tweet
             dictionary = originalTweet;
         }
-        
-//        self.idStr = dictionary[@"id_str"];
-//        
-//        if([dictionary valueForKey:@"full_text"] != nil) {
-//               self.text = dictionary[@"full_text"]; // uses full text if Twitter API provided it
-//           } else {
-//               self.text = dictionary[@"text"]; // fallback to regular text that Twitter API provided
-//           }
-        
 
         // Initialize user
         NSDictionary *user = dictionary[@"user"];
@@ -59,6 +50,9 @@
         formatter.timeStyle = NSDateFormatterNoStyle;
         // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
+        
+        // TODO: Implement the formatting dates here
+        
     }
     return self;
 }
