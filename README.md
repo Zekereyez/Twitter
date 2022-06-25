@@ -52,6 +52,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+![twitter_AdobeExpress](https://user-images.githubusercontent.com/70353807/175750151-9dc80248-56d1-4664-aa77-5aee30b2ce9d.gif)
+
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
